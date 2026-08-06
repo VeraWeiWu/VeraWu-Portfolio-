@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vera Wu · 营销战役 & 会员活动作品集</title>
+<meta name="description" content="高端生活方式品牌 IMC 战役、会员活动策划、品牌内容运营">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF8F4;
+    --bg-soft: #F2EFE9;
+    --ink: #1A1A1A;
+    --ink-soft: #3A3A3A;
+    --ink-mute: #7A7A7A;
+    --line: #D8D2C5;
+    --accent: #8B1A1A;
+    --gold: #8B6F47;
+    --serif: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+    --sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+    padding: 1.2rem 5vw;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; }
+  .nav-menu { display: flex; gap: 2rem; list-style: none; }
+  .nav-menu a { color: var(--ink-soft); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.1em; transition: color 0.2s; }
+  .nav-menu a:hover { color: var(--accent); }
+
+  .hero {
+    min-height: 100vh;
+    padding: 12rem 5vw 6rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-content { display: flex; flex-direction: column; justify-content: center; }
+  .hero-eyebrow { font-size: 0.8rem; color: var(--gold); letter-spacing: 0.25em; margin-bottom: 1.5rem; font-weight: 500; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 400; line-height: 1.1; margin-bottom: 2rem; max-width: 900px; }
+  .hero h1 em { font-style: italic; color: var(--accent); font-weight: 300; }
+  .hero-sub { font-family: var(--serif); font-size: clamp(1rem, 1.6vw, 1.3rem); color: var(--ink-soft); font-weight: 300; margin-bottom: 3rem; max-width: 700px; line-height: 1.6; }
+
+  /* HERO DECORATION */
+  .hero-deco {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.12;
+    user-select: none;
+  }
+  .hero-avatar {
+    width: clamp(180px, 22vw, 280px);
+    height: clamp(180px, 22vw, 280px);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.12),
+      0 2px 8px rgba(0,0,0,0.08);
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    opacity: 1;
+    background: white;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .hero-avatar:hover {
+    transform: scale(1.03);
+    box-shadow:
+      0 12px 40px rgba(0,0,0,0.14),
+      0 4px 12px rgba(0,0,0,0.08);
+  }
+  .brand-orb {
+    position: absolute;
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--ink);
+    white-space: nowrap;
+    transition: opacity 0.4s, transform 0.4s;
+    animation: float 8s ease-in-out infinite;
+  }
+  .brand-orb:nth-child(1) { font-size: clamp(2.8rem, 5vw, 4.2rem); top: 8%; left: 10%; transform: rotate(-6deg); animation-delay: 0s; }
+  .brand-orb:nth-child(2) { font-size: clamp(2rem, 3.8vw, 3rem); top: 35%; right: 5%; transform: rotate(8deg); animation-delay: -2s; }
+  .brand-orb:nth-child(3) { font-size: clamp(2.4rem, 4.2vw, 3.4rem); bottom: 25%; left: 18%; transform: rotate(-3deg); animation-delay: -4s; }
+  .brand-orb:nth-child(4) { font-size: clamp(1.8rem, 3vw, 2.6rem); bottom: 8%; right: 15%; transform: rotate(5deg); animation-delay: -6s; }
+  .brand-orb:nth-child(5) { font-size: clamp(2.2rem, 3.6vw, 3rem); top: 55%; left: 5%; transform: rotate(-9deg); animation-delay: -3s; opacity: 0.08; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-12px) rotate(var(--r, 0deg)); }
+  }
+  .hero-deco:hover .brand-orb { opacity: 0.22; }
+
+  .stats-band { padding: 4rem 5vw; background: var(--ink); color: var(--bg); }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto; }
+  .stat-num { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 400; line-height: 1; margin-bottom: 0.4rem; }
+  .stat-num em { color: var(--gold); font-style: normal; }
+  .stat-label { font-size: 0.78rem; color: rgba(250, 248, 244, 0.65); letter-spacing: 0.08em; line-height: 1.4; }
+
+  section { padding: 6rem 5vw; }
+  .section-eyebrow { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.25em; margin-bottom: 1rem; font-weight: 500; }
+  .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.15; color: var(--ink); margin-bottom: 1rem; max-width: 900px; }
+  .section-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+  .section-lead { font-size: 1rem; color: var(--ink-soft); max-width: 700px; margin-bottom: 4rem; line-height: 1.8; }
+
+  /* CASE */
+  .case { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; padding: 5rem 0; border-top: 1px solid var(--line); align-items: start; }
+  .case.reverse { grid-template-columns: 1fr 1.4fr; }
+  .case.reverse .case-visuals { order: -1; }
+  .case-visuals { display: flex; flex-direction: column; gap: 1rem; }
+  .case-visuals img, .case-visuals video { width: 100%; display: block; object-fit: cover; }
+  .case-hero { aspect-ratio: 16/9; overflow: hidden; }
+  .case-meta { position: sticky; top: 8rem; }
+  .case-num { font-size: 0.85rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .case-brand { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--ink); font-weight: 500; margin-bottom: 0.3rem; }
+  .case-tagline { font-size: 0.95rem; color: var(--ink-mute); margin-bottom: 1.5rem; font-style: italic; }
+  .case-desc { color: var(--ink-soft); margin-bottom: 2rem; line-height: 1.7; font-size: 0.95rem; }
+  .case-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .metric-num { font-family: var(--serif); font-size: 2.2rem; color: var(--accent); font-weight: 500; line-height: 1; margin-bottom: 0.3rem; }
+  .metric-label { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.4; }
+  .case-role { font-size: 0.85rem; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 1.5rem; }
+  .case-role strong { color: var(--ink); font-weight: 500; }
+  .figcaption { font-size: 0.8rem; color: var(--ink-mute); text-align: center; margin-top: 0.5rem; font-style: italic; }
+
+  /* EVENTS */
+  .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .event-card { background: white; border: 1px solid var(--line); overflow: hidden; transition: all 0.3s; }
+  .event-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+  .event-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: var(--bg-soft); }
+  .event-card-body { padding: 1.2rem; }
+  .event-card-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+  .event-card-desc { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.5; }
+
+  /* VIDEO GRID */
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+
+  /* ABOUT */
+  .about-text { max-width: 700px; }
+  .about-text p { color: var(--ink-soft); line-height: 1.8; margin-bottom: 1.2rem; font-size: 0.95rem; }
+  .about-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+  .about-col h3 { font-family: var(--serif); font-size: 1.2rem; color: var(--gold); margin-bottom: 0.8rem; font-weight: 500; }
+
+  /* LANG */
+  .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; margin-top: 1rem; }
+  .lang-item { font-size: 0.95rem; color: var(--ink); }
+  .lang-item span { display: block; font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.2rem; }
+
+  /* TIMELINE */
+  .timeline { margin-top: 2rem; }
+  .t-item { display: grid; grid-template-columns: 140px 1fr; gap: 2rem; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+  .t-date { font-family: var(--serif); color: var(--ink-mute); font-size: 0.85rem; }
+  .t-body h4 { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); font-weight: 500; margin-bottom: 0.2rem; }
+  .t-body .org { font-size: 0.9rem; color: var(--accent); margin-bottom: 0.4rem; }
+  .t-body p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; }
+
+  .contact { background: var(--ink); color: var(--bg); text-align: center; padding: 6rem 5vw; }
+  .contact .section-eyebrow { color: var(--gold); }
+  .contact h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; font-weight: 300; font-style: italic; color: var(--bg); }
+  .contact p { color: rgba(250, 248, 244, 0.7); max-width: 500px; margin: 0 auto 2rem; }
+  .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+  .contact-link { color: var(--bg); text-decoration: none; font-size: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--gold); transition: all 0.2s; }
+  .contact-link:hover { color: var(--gold); }
+  footer { padding: 2rem 5vw; text-align: center; color: var(--ink-mute); font-size: 0.8rem; background: var(--bg-soft); }
+
+  /* PLATFORM CARDS (replaces case 04) */
+  .platforms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 0; }
+  .platform-card { background: white; border: 1px solid var(--line); overflow: hidden; transition: border-color 0.25s; }
+  .platform-card:hover { border-color: var(--accent); }
+  .platform-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top center; display: block; }
+  .platform-card-body { padding: 1.4rem 1.5rem; }
+  .platform-card-body h4 { font-family: var(--serif); font-size: 1.08rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+  .platform-card-body p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 0; }
+  .platform-highlight {
+    margin-top: 0.8rem; padding-top: 0.8rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.76rem; color: var(--accent); font-weight: 500;
+  }
+
+  /* VIDEO BLOCK (for events) */
+  .video-block { margin: 2rem 0 0.5rem; }
+  .video-block video { width: 100%; max-width: 700px; display: block; margin: 0 auto; border-radius: 2px; }
+
+  /* PHONE FRAME for screenshots */
+  .phone-frame {
+    position: relative;
+    width: 100%;
+    padding: 10px 12px;
+    background: #1a1a1a;
+    border-radius: 28px;
+    box-shadow: 
+      0 0 0 1px rgba(255,255,255,0.08),
+      0 12px 40px rgba(0,0,0,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .phone-frame::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 5px;
+    background: #333;
+    border-radius: 3px;
+    z-index: 2;
+  }
+  .phone-frame img {
+    width: 100%;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    border-radius: 18px;
+  }
+
+  /* EVENT CARD TAG */
+  .event-tag { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; margin-bottom: 0.35rem; }
+
+  @media (max-width: 900px) {
+    .case, .case.reverse { grid-template-columns: 1fr; gap: 2.5rem; }
+    .case.reverse .case-visuals { order: 0; }
+    .case-meta { position: static; }
+    .t-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .about-cols { grid-template-columns: 1fr; gap: 2rem; }
+    .video-grid { grid-template-columns: 1fr; }
+    .hero { grid-template-columns: 1fr; gap: 2rem; padding: 10rem 5vw 4rem; }
+    .hero-deco { height: 280px; opacity: 0.08; }
+    .hero-avatar { width: 140px; height: 140px; }
+  }
+  @media (max-width: 600px) {
+    .case-metrics { grid-template-columns: 1fr; }
+    .nav-menu { gap: 1rem; }
+    .nav-menu a { font-size: 0.7rem; }
+    .hero { padding: 8rem 5vw 3rem; }
+    .hero-deco { display: none; }
+    section { padding: 4rem 5vw; }
+    .case { padding: 3rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">吴子薇 Vera Wu</div>
+  <ul class="nav-menu">
+    <li><a href="#work">战役</a></li>
+    <li><a href="#events">活动</a></li>
+    <li><a href="#research">研究</a></li>
+    <li><a href="#about">关于</a></li>
+    <li><a href="#contact">联系</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">品牌营销 · 会员活动 · 内容运营</div>
+    <h1>为高端生活方式品牌<em>做对的事，找对的人。</em></h1>
+    <p class="hero-sub">从明星 IMC 到私人会员活动——把品牌策略变成一个让人记住的体验。</p>
+  </div>
+  <div class="hero-deco">
+    <div class="brand-orb" style="--r:-6deg">Christian Louboutin</div>
+    <div class="brand-orb" style="--r:8deg">BMW</div>
+    <div class="brand-orb" style="--r:-3deg">Zippo</div>
+    <div class="brand-orb" style="--r:5deg">Rosewood</div>
+    <div class="brand-orb" style="--r:-9deg">Marriott</div>
+  </div>
+  <img src="assets/linkedin profile.jpg" alt="Vera Wu" class="hero-avatar">
+</section>
+
+<section class="stats-band">
+  <div class="stats-grid">
+    <div class="stat"><div class="stat-num">200<em>M+</em></div><div class="stat-label">CL 赵丽颖 Campaign 全平台曝光</div></div>
+    <div class="stat"><div class="stat-num">360<em>M+</em></div><div class="stat-label">CL ZLY 触达粉丝</div></div>
+    <div class="stat"><div class="stat-num"><em>#</em>15 → <em>#</em>10</div><div class="stat-label">CL 媒体价值排名提升</div></div>
+    <div class="stat"><div class="stat-num">1,000+</div><div class="stat-label">年均合作 KOL</div></div>
+    <div class="stat"><div class="stat-num">4×</div><div class="stat-label">Zippo 520 销量同比</div></div>
+    <div class="stat"><div class="stat-num">7+</div><div class="stat-label">会员活动类型</div></div>
+  </div>
+</section>
+
+<!-- ====== WORK ====== -->
+<section id="work">
+  <div class="section-eyebrow">代表战役</div>
+  <h2 class="section-title">做过的 <em>有数据的</em> 战役</h2>
+  <p class="section-lead">从策略、内容、KOL、PR 到落地执行——全程在手的 IMC 案例。</p>
+
+  <div class="case">
+    <div class="case-visuals">
+      <video class="case-hero" src="assets/cl/ZLY TVC.mp4" autoplay loop muted playsinline style="object-position: center 40%; transform: scale(1.04);"></video>
+      <div class="figcaption">赵丽颖 CL 品牌 TVC</div>
+    </div>
+    <div class="case-meta">
+      <div class="case-num">01 / 明星 IMC</div>
+      <h3 class="case-brand">CL × 赵丽颖 · Cushion 上市</h3>
+      <div class="case-tagline">彩妆代言人官宣 × Cushion 新品上市 IMC</div>
+      <p class="case-desc">品牌首次合作彩妆代言人。大曝光媒体投放、千人 KOL 矩阵、KOC 口碑蓄水、红毯活动造势——全链路操盘。产出了 3 条 TVC、10 套 KV。</p>
+      <div class="case-metrics">
+        <div><div class="metric-num">2 亿</div><div class="metric-label">全平台曝光</div></div>
+        <div><div class="metric-num">3.6 亿</div><div class="metric-label">触达粉丝</div></div>
+        <div><div class="metric-num">+900%</div><div class="metric-label">月均 buzz 增长</div></div>
+        <div><div class="metric-num">80%</div><div class="metric-label">小红书爆文率</div></div>
+      </div>
+      <div class="case-role"><strong>Role:</strong> Consumer Engagement Executive · 统筹品牌四大社交平台、IMC 战役与明星合作</div>
+    </div>
+  </div>
+
+  <div class="case reverse">
+    <div class="case-visuals">
+      <video class="case-hero" src="assets/cl/29-bmw-campaign.mp4" autoplay loop muted playsinline style="object-position: center 40%; transform: scale(1.04);"></video>
+      <div class="figcaption">CL × BMW 「New Year Be Red」</div>
+    </div>
+    <div class="case-meta">
+      <div class="case-num">02 / 跨界联名</div>
+      <h3 class="case-brand">CL × BMW · New Year Be Red</h3>
+      <div class="case-tagline">奢侈美妆 × 豪华汽车 · 新年联名 Campaign</div>
+      <p class="case-desc">以"红"为核心视觉锚点——借赵丽颖的红唇形象与 BMW 红色车系，触达奢侈品与豪车双圈层人群。</p>
+      <div class="case-metrics">
+        <div><div class="metric-num">2 品牌</div><div class="metric-label">奢侈跨界</div></div>
+        <div><div class="metric-num">视频 + KV</div><div class="metric-label">全平台推</div></div>
+      </div>
+      <div class="case-role"><strong>Role:</strong> 项目统筹 + 跨品牌对接 + 内容产出</div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case-visuals">
+      <img class="case-hero" src="assets/zippo/1.png" alt="Zippo 520 Campaign - Movie Scene Collage" style="object-fit: cover;">
+    </div>
+    <div class="case-meta">
+      <div class="case-num">03 / 电商 IMC</div>
+      <h3 class="case-brand">Zippo · 520 爱情染色机</h3>
+      <div class="case-tagline">桃雾 & 娇墨礼盒 · 25 天全域推广</div>
+      <p class="case-desc">5 大站外平台 + 10 个站内渠道 + 店铺直播。管理多家 agency，主导传播创意，引流天猫京东进店。</p>
+      <div class="case-metrics">
+        <div><div class="metric-num">36 天</div><div class="metric-label">全网售罄</div></div>
+        <div><div class="metric-num">4×</div><div class="metric-label">销量同比</div></div>
+        <div><div class="metric-num">+200%</div><div class="metric-label">曝光增长</div></div>
+        <div><div class="metric-num">TOP 1</div><div class="metric-label">天猫流量</div></div>
+      </div>
+      <div class="case-role"><strong>Role:</strong> Social & Digital Marketing Executive · 全年 4 个 IMC Campaign</div>
+    </div>
+  </div>
+
+  <!-- ====== PLATFORMS (replaces old case 04) ====== -->
+  <div class="case">
+    <div class="case-visuals">
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <div class="phone-frame"><img src="assets/cl/douyin-profile.png" alt="CL 抖音官方旗舰店"></div>
+          <div class="platform-card-body">
+            <h4>抖音 · 官方旗舰店</h4>
+            <p>从零搭建 CL 抖音官方旗舰店账号，建立完整内容矩阵与发布节奏。</p>
+            <div class="platform-highlight">12.9 万粉丝 · 194 条作品</div>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="phone-frame"><img src="assets/cl/25-xhs-profile.jpg" alt="CL 小红书官方账号"></div>
+          <div class="platform-card-body">
+            <h4>小红书 · 品牌官方号</h4>
+            <p>品牌官方账号运营，Content Strategy 制定与执行，平衡品牌调性与平台语境。</p>
+            <div class="platform-highlight">10.5 万粉丝 · 企业认证</div>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="phone-frame"><img src="assets/cl/23-weibo profile.jpg" alt="CL 微博官方账号"></div>
+          <div class="platform-card-body">
+            <h4>微博 · 官方认证号</h4>
+            <p>品牌官方微博运营，明星代言宣发阵地，热搜话题管理与互动维护。</p>
+            <div class="platform-highlight">16 万粉丝 · 单条最高赞 15.1 万</div>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="phone-frame"><img src="assets/cl/24-wechat-profile.jpg" alt="CL 微信公众号"></div>
+          <div class="platform-card-body">
+            <h4>微信公众号</h4>
+            <p>中英双语深度文章撰写与发布，涵盖品牌故事、产品教育、趋势解读。</p>
+            <div class="platform-highlight">单篇最高阅读 4.5 万+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-meta">
+      <div class="case-num">04 / 品牌内容运营</div>
+      <h3 class="case-brand">Christian Louboutin Beauty<br>全平台官方账号运营</h3>
+      <div class="case-tagline">中英双语内容撰写 · 从抖音 0 到 1 起号到稳定输出</div>
+      <p class="case-desc">运营 CL 美妆四大品牌官方社交平台（抖音 / 小红书 / 微博 / 微信），管理 1,000+ KOL/年，帮助品牌从行业 #15 提升至 #10 媒体价值排名。负责 Content Strategy 制定、中英双语文案撰写、发布排期管理与数据复盘。</p>
+      <div class="case-metrics">
+        <div><div class="metric-num">16 万</div><div class="metric-label">微博粉丝</div></div>
+        <div><div class="metric-num">10.5 万</div><div class="metric-label">小红书粉丝</div></div>
+        <div><div class="metric-num">12.9 万</div><div class="metric-label">抖音粉丝</div></div>
+        <div><div class="metric-num">1,598 万</div><div class="metric-label">微博视频播放</div></div>
+      </div>
+      <div class="case-role"><strong>Role:</strong> 内容策划 + KOL 管理 + 多平台运营</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== EVENTS ====== -->
+<section id="events" style="background: var(--bg-soft);">
+  <div class="section-eyebrow">会员活动</div>
+  <h2 class="section-title">Carlyle & Co.<br><em>会员活动策划与执行</em></h2>
+  <p class="section-lead">Rosewood 旗下私人会员俱乐部 · 为高净值会员设计并落地多元体验活动</p>
+
+  <div class="events-grid">
+    <div class="event-card">
+      <video src="assets/carlyle/Danny Chung.mp4" autoplay loop muted playsinline controls style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;"></video>
+      <div class="event-card-body">
+        <div class="event-tag">会员对谈</div>
+        <div class="event-card-title">Dialogue with Danny Chung</div>
+        <div class="event-card-desc">K-pop 编曲人分享创作历程——BLACKPINK、Netflix《Demon Hunters》金曲背后的故事。</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="assets/carlyle/Committe Social Event.jpg" alt="Committee social dinner">
+      <div class="event-card-body">
+        <div class="event-tag">会员社交</div>
+        <div class="event-card-title">Committee Social Dinner</div>
+        <div class="event-card-desc">委员会成员专属晚宴，烛光餐桌与品酒交流。</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="assets/carlyle/02-author-workshop.jpg" alt="Author talk">
+      <div class="event-card-body">
+        <div class="event-tag">Workshop</div>
+        <div class="event-card-title">Author Talk</div>
+        <div class="event-card-desc">邀请畅销书作家到俱乐部进行主题分享与深度交流。</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="assets/carlyle/03-valentine-chocolate workshop.jpg" alt="Valentine chocolate workshop">
+      <div class="event-card-body">
+        <div class="event-tag">节日创意</div>
+        <div class="event-card-title">Valentine's Chocolate Workshop</div>
+        <div class="event-card-desc">情人节手工巧克力制作工坊，专业工具与手部护理配套。</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="assets/carlyle/04-birthday-cake-action.jpg" alt="Birthday cake decoration">
+      <div class="event-card-body">
+        <div class="event-tag">月度创意</div>
+        <div class="event-card-title">Birthday Cake Decoration</div>
+        <div class="event-card-desc">灵感来自 TikTok 趋势的蛋糕装饰 DIY，烘焙主厨现场指导。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== RESEARCH ====== -->
+<section id="research">
+  <div class="section-eyebrow">学术研究</div>
+  <h2 class="section-title">用研究<em>回答商业问题</em></h2>
+  <p class="section-lead">PolyU SHTM 咨询项目：万豪奢华品牌线大中华区感官营销战役。论文第一作者，即将在 OBOROT 国际会议发表。</p>
+
+  <div class="video-grid">
+    <div class="video-block">
+      <img style="width:100%;" src="assets/marriott/Brand × Fragrance The Six Precision Pairings.png" alt="Brand × Fragrance">
+      <div class="figcaption">6 大酒店 × 6 个香氛品牌精准配对研究</div>
+    </div>
+    <div class="video-block">
+      <img style="width:100%;" src="assets/marriott/sleep line.png" alt="Sleep Line">
+      <div class="figcaption">睡眠线 · 52.1% 受访者要求功能性香氛 · ¥480 - ¥1,200+ 商业定价</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ABOUT ====== -->
+<section id="about">
+  <div class="section-eyebrow">关于我</div>
+  <h2 class="section-title">4 年营销实战</h2>
+
+  <div class="about-text">
+    <p>高端生活方式是主场。横跨美妆、生活方式、奢侈品、奢华酒店、私人会所的营销经历。</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="section-eyebrow">联系</div>
+  <h2>聊聊品牌、campaign<br>或下一场活动。</h2>
+  <div class="contact-links">
+    <a href="mailto:veronicawuziwei@gmail.com" class="contact-link">veronicawuziwei@gmail.com</a>
+    <a href="tel:+8618817719785" class="contact-link">+86 188 1771 9785</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Vera Ziwei Wu</p>
+</footer>
+
+</body>
+</html>
